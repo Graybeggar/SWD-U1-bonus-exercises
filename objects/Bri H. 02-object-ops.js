@@ -85,9 +85,25 @@ for (let restaurant of restaurants) {
 /*
 	Create two objects representing different local attractions (zoo, gardens, museums, etc), each with the following properties: name, location, adultTicketPrice, childTicketPrice, and famousFeatures (array of three strings). Be creative! Place the objects in an array.
 */
+let bronxZoo = {
+   name: "Bronx Zoo",
+   location: "Bronx, NY",
+   adultTicket: 50,
+   childTicket: 25,
+   famousFeatures: ["Cute Animals", "Cheap Prices", "Clean Bathrooms"]
+};
+
+let broadwayShow = {
+   name: "Broadway",
+   location: "New York, NY",
+   adultTicket: 500,
+   childTicket: 200,
+   famousFeatures: ["Friendly Staff", "Family Friendly", "Jaw Dropping Performances"]
+};
+
 
 // TODO: create objects and put them in an array
-
+let attractions = [bronxZoo, broadwayShow];
 /*
 	Loop through the array, then within that for loop, use a for...in loop to grab values from each key and print them to the console. If you come across a key storing an array, print each element in the array instead of the array itself. Remember that you need a new index variable with each nested FOR loop (i, j are common).
 
@@ -95,7 +111,18 @@ for (let restaurant of restaurants) {
 */
 
 // TODO: use nested loops to print values inside objects
-
+for (let places of attractions) {
+	for (let key in places) {
+		if (Array.isArray(places[key])) {
+			for (let i = 0; i < places[key].length; i++) {
+				console.log(places[key][i]);
+			}
+		} else {
+			console.log(places[key]);
+		}
+	}
+   console.log("------------------");
+}
 /*
 	Last task: loop through the outer array and print a single template literal for each attraction using placeholders referencing the object at each index. Here's an example:
 
@@ -106,4 +133,12 @@ for (let restaurant of restaurants) {
 */
 
 // TODO: Print a template literal
-
+for (let place of attractions) {
+	console.log(`
+**********************************************
+${place.name} - ${place.location}
+**********************************************
+A favorite with the locals, ${place.name} boasts over a dozen features, including the ${place.famousFeatures[0]}, ${place.famousFeatures[1]}, and ${place.famousFeatures[2]}.
+Admission is $${place.adultTicket} for adults, $${place.childTicket} for children ages 5–12, and free for children 4 and under.
+	`);
+}
